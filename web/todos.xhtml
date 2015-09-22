@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Todo-List</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h1>Listagem</h1>
+
+            <h:dataTable value="#{todoController.todos}"
+                         var="todo" class="table table-striped">
+                <h:column>
+                    <f:facet name="header">Descrição</f:facet>
+                    #{todo.description}
+                </h:column>
+                <h:column>
+                    <h:commandButton value="Marcar tarefa como realizada"
+                                     action="#{todoController.done(todo)}"
+                                     rendered="#{!todo.done}"
+                                     class="btn btn-sm" />
+                    <h:outputText value="Tarefa realizada :)"
+                                  rendered="#{todo.done}" class="text-success" />
+                </h:column>
+            </h:dataTable>
+
+            <h:commandButton value="Novo" action="#{todoController.newTodo}"
+                             class="btn btn-primary btn-lg btn-block"  />
+        </h:form>
+    </h:body>
+</html>
+
